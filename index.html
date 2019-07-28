@@ -26,26 +26,13 @@ g.selectAll("path")
 .attr("d",arc)
 .attr("fill",function(d,i) {return color[i];})
 
-  <div class="row">
-  <div class="col-md-5" id="area1"></div>
-  <div class="col-md-2"> 
-    To the left is a graph showing the anticipated profits
-    of the 'Widget Incorporated' company.
-    On the right is the anticipated cost of production as 
-    the number of Widgets is increased.
-    Clearly we will be RICH!
-  </div>
-  <div class="col-md-5" id="area2"></div>
-   </div>
+
 
 var padding = 2;
 
 var yscale = d3.scaleLinear().domain([0,42]).range([h,0]);
 var xscale = d3.scaleBand().domain([0,1,2,3,4,5]).range([0,w]);
 
-var margin = 50;
-var height = 200;
-var width = 200;
 
 
 var g = d3.selectAll("svg")
@@ -67,7 +54,7 @@ var yaxis = d3.select("svg").append("g")
 .call(d3.axisLeft(yscale));
 
 var xaxis = d3.select("svg").append("g")
-.attr("transform","translate("+margin+","+(height+margin)+")")
+.attr("transform","translate("+margin+","+(h+margin)+")")
 .call(d3.axisBottom(xscale));
 
   </script>
