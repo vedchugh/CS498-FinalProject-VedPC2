@@ -26,37 +26,6 @@ g.selectAll("path")
 .attr("d",arc)
 .attr("fill",function(d,i) {return color[i];})
 
-
-
-var padding = 2;
-
-var yscale = d3.scaleLinear().domain([0,42]).range([h,0]);
-var xscale = d3.scaleBand().domain([0,1,2,3,4,5]).range([0,w]);
-
-
-
-var g = d3.selectAll("svg")
-  .append("g")
-  .attr("transform","translate("+margin+","+margin+")");
-
-g.selectAll("rect")
-  .data(data)
-  .enter()
-  .append("rect")
-  .attr("x", function(d, i) {return xscale(i);})
-  .attr("y", function(d){ return yscale(d);})
-  .attr("width", xscale.bandwidth())
-  .attr("height", function(d){return h- yscale(d);})
-  .attr("fill",function(d,i) {return color[i];});
-
-var yaxis = d3.select("svg").append("g")
-.attr("transform","translate("+margin+","+margin+")")
-.call(d3.axisLeft(yscale));
-
-var xaxis = d3.select("svg").append("g")
-.attr("transform","translate("+margin+","+(h+margin)+")")
-.call(d3.axisBottom(xscale));
-
   </script>
   </body>
 </html>
