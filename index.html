@@ -3,7 +3,7 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> path {stroke: black;}</style>
 <body>
-<svg width=300 height=300>
+<svg width=600 height=600>
 </svg>
 <script>
 var data = [4,8,15,16,23,42];
@@ -21,27 +21,10 @@ g.selectAll("path")
 .append("path")
 .attr("d",arc)
 .attr("fill",function(d,i) {return color[i];})
-</script>
-</body>
-</html>
 
-<html>
-<head>
-  <meta name="description" content="Drawing Shapes w/ D3 - "/>
-  <meta charset="utf-8">
-  <title>Drawing SVG Shapes with D3</title>
-  <script src="https://d3js.org/d3.v5.min.js"></script>  
-  <style> rect {fill: lightblue; stroke: black; }</style>
-</head>
-<body>
-<svg width=300 height=300>
-</svg>
-<script>
-  
 var w = 200;
 var h = 200;
 var padding = 2;
-var data = [4,8,15,16,23,42];
 
 var yscale = d3.scaleLinear().domain([0,42]).range([h,0]);
 var xscale = d3.scaleBand().domain([0,1,2,3,4,5]).range([0,w]);
