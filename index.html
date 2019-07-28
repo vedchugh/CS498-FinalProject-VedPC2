@@ -24,3 +24,54 @@ g.selectAll("path")
 </script>
 </body>
 </html>
+
+<html>
+<head>
+  <meta name="description" content="Drawing Shapes w/ D3 - "/>
+  <meta charset="utf-8">
+  <title>Drawing SVG Shapes with D3</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>  
+  <style> rect {fill: lightblue; stroke: black; }</style>
+</head>
+<body>
+<svg width=300 height=300>
+</svg>
+<script>
+  
+var w = 200;
+var h = 200;
+var padding = 2;
+var data = [4,8,15,16,23,42];
+
+var yscale = d3.scaleLinear().domain([0,42]).range([h,0]);
+var xscale = d3.scaleBand().domain([0,1,2,3,4,5]).range([0,w]);
+
+var margin = 50;
+var height = 200;
+var width = 200;
+
+
+var g = d3.selectAll("svg")
+  .append("g")
+  .attr("transform","translate("+margin+","+margin+")");
+
+g.selectAll("rect")
+  .data(data)
+  .enter()
+  .append("rect")
+  .attr("x", function(d, i) {return xscale(i);})
+  .attr("y", function(d){ return yscale(d);})
+  .attr("width", xscale.bandwidth())
+  .attr("height", function(d){return h- yscale(d);});
+
+var yaxis = d3.select("svg").append("g")
+.attr("transform","translate("+margin+","+margin+")")
+.call(d3.axisLeft(yscale));
+
+var xaxis = d3.select("svg").append("g")
+.attr("transform","translate("+margin+","+(height+margin)+")")
+.call(d3.axisBottom(xscale));
+
+  </script>
+  </body>
+</html>
