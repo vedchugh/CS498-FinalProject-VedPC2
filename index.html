@@ -3,29 +3,22 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> path {stroke: black;}</style>
 <body>
-<svg width=600 height=600>
+<svg width=300 height=300>
 </svg>
 <script>
-
-  var	margin = {top: 30, right: 20, bottom: 30, left: 50},
-	w = 400 - margin.left - margin.right,
-	h = 220 - margin.top - margin.bottom;
-  var data = [4,8,15,16,23,42];
-  var color = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
-  var pie = d3.pie();
-  var arc = d3.arc().innerRadius(0).outerRadius(100);
-
+var data = [4,8,15,16,23,42];
+var color = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
+var pie = d3.pie();
+var arc = d3.arc().innerRadius(0).outerRadius(100);
 var g = d3.selectAll("svg")
   .append("g")
-  .attr("transform","translate("+margin.left+","+margin.top+")");
-
+  .attr("transform","translate("+150+","+150+")");
 g.selectAll("path")
 .data(pie(data))
 .enter()
 .append("path")
 .attr("d",arc)
 .attr("fill",function(d,i) {return color[i];})
-
-  </script>
-  </body>
+</script>
+</body>
 </html>
