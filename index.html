@@ -6,14 +6,18 @@
 <svg width=600 height=600>
 </svg>
 <script>
-var data = [4,8,15,16,23,42];
-var color = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
-var pie = d3.pie();
-var arc = d3.arc().innerRadius(0).outerRadius(100);
+
+  var	margin = {top: 30, right: 20, bottom: 30, left: 50},
+	w = 400 - margin.left - margin.right,
+	h = 220 - margin.top - margin.bottom;
+  var data = [4,8,15,16,23,42];
+  var color = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
+  var pie = d3.pie();
+  var arc = d3.arc().innerRadius(0).outerRadius(100);
 
 var g = d3.selectAll("svg")
   .append("g")
-  .attr("transform","translate("+150+","+150+")");
+  .attr("transform","translate("+margin.left+","+margin.top+")");
 
 g.selectAll("path")
 .data(pie(data))
@@ -22,8 +26,18 @@ g.selectAll("path")
 .attr("d",arc)
 .attr("fill",function(d,i) {return color[i];})
 
-var w = 200;
-var h = 200;
+  <div class="row">
+  <div class="col-md-5" id="area1"></div>
+  <div class="col-md-2"> 
+    To the left is a graph showing the anticipated profits
+    of the 'Widget Incorporated' company.
+    On the right is the anticipated cost of production as 
+    the number of Widgets is increased.
+    Clearly we will be RICH!
+  </div>
+  <div class="col-md-5" id="area2"></div>
+   </div>
+
 var padding = 2;
 
 var yscale = d3.scaleLinear().domain([0,42]).range([h,0]);
