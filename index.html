@@ -10,29 +10,35 @@
 async function init() {
 const data = await d3.csv('https://flunky.github.io/cars2017.csv');
 console.log(data);
+
 var w = 200;
 var h = 200;
+
 var margin = 50;
-var yscale = d3.scaleLog().domain([10,20,50,100]).range([h,0]);
-var xscale = d3.scaleLog().domain([10,20,50,100]).range([0,w]);
-var g = d3.selectAll("svg")
+var range = [10,20,50,100];
+
+var yscale = d3.scaleLog().domain([10,150]).range([h,0]);
+var xscale = d3.scaleLog().domain([10,150]).range([0,w]);
+
+var g = d3.select("svg")
   .append("g")
   .attr("transform","translate("+margin+","+margin+")");
+
 g.selectAll("circle")
   .data(data)
   .enter()
   .append("circle")
-  .attr("cx", function(d) {return xscale(d.AverageCityMPG);})
-  .attr("cy", function(d){ return yscale(d.AverageHighwayMPG);})
-  .attr("r", function(d){return 2+d.EngineCylinders;});
+  .attr("cx", function(d) {return xscale(parseInt(d.AverageCityMPG));})
+  .attr("cy", function(d){ return yscale(parseInt(d.AverageHighwayMPG));})
+  .attr("r", function(d){return parseInt(d.EngineCylinders)+2;});
 
 var yaxis = d3.select("svg").append("g")
 .attr("transform","translate("+margin+","+margin+")")
-.call(d3.axisLeft(yscale).tickValues([10,20,50,100]).tickFormat(d3.format("~s")));
+.call(d3.axisLeft(yscale).tickValues(range).tickFormat(d3.format("~s")));
 
 var xaxis = d3.select("svg").append("g")
 .attr("transform","translate("+margin+","+(h+margin)+")")
-.call(d3.axisBottom(xscale).tickValues([10,20,50,100]).tickFormat(d3.format("~s")));
+.call(d3.axisBottom(xscale).tickValues(range).tickFormat(d3.format("~s")));
 }
 </script>
 </body>
