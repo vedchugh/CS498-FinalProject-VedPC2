@@ -2,8 +2,7 @@
 <div style="text-align:center">
   <h1> My First Code in github</h1>
 <script src='https://d3js.org/d3.v5.min.js'></script>
-<style> path {stroke: black;}</style>
-<style> circle {fill: lightblue; stroke: black;} </style>
+  <style> rect {fill: lightblue; stroke: black; }</style>
 <body onload='init()'>
 <svg width=300 height=300>
 </svg>
@@ -14,32 +13,36 @@ console.log(data);
 
 var w = 200;
 var h = 200;
+var padding = 2;
+
+var yscale = d3.scaleLinear().domain([0,42]).range([h,0]);
+var xscale = d3.scaleBand().domain([0,1,2,3,4,5]).range([0,w]);
 
 var margin = 50;
-var range = [10,20,50,100];
+var height = 200;
+var width = 200;
 
-var yscale = d3.scaleLog().domain([10,150]).range([h,0]);
-var xscale = d3.scaleLog().domain([10,150]).range([0,w]);
 
-var g = d3.select("svg")
+var g = d3.selectAll("svg")
   .append("g")
   .attr("transform","translate("+margin+","+margin+")");
 
-g.selectAll("circle")
+g.selectAll("rect")
   .data(data)
   .enter()
-  .append("circle")
-  .attr("cx", function(d) {return xscale(d."Country Name");})
-  .attr("cy", function(d){ return yscale(parseInt(d."Avg. Value"));})
-  .attr("r", 2);
+  .append("rect")
+  .attr("x", function(d, i) {return xscale(i);})
+  .attr("y", function(d){ return yscale(d);})
+  .attr("width", xscale.bandwidth())
+  .attr("height", function(d){return h- yscale(d);});
 
 var yaxis = d3.select("svg").append("g")
 .attr("transform","translate("+margin+","+margin+")")
-.call(d3.axisLeft(yscale).tickValues(range).tickFormat(d3.format("~s")));
+.call(d3.axisLeft(yscale));
 
 var xaxis = d3.select("svg").append("g")
-.attr("transform","translate("+margin+","+(h+margin)+")")
-.call(d3.axisBottom(xscale).tickValues(range).tickFormat(d3.format("~s")));
+.attr("transform","translate("+margin+","+(height+margin)+")")
+.call(d3.axisBottom(xscale));
 }
 </script>
 </body>
