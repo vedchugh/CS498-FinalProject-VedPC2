@@ -9,7 +9,7 @@
 </svg>
 <script>
 async function init() {
-const data = await d3.csv('https://flunky.github.io/cars2017.csv');
+const data = await d3.csv('https://vedchugh.github.io/CS498-FinalProject-VedPC2/HW2_Country_Avg_age.csv');
 console.log(data);
 
 var w = 200;
@@ -29,9 +29,9 @@ g.selectAll("circle")
   .data(data)
   .enter()
   .append("circle")
-  .attr("cx", function(d) {return xscale(parseInt(d.AverageCityMPG));})
-  .attr("cy", function(d){ return yscale(parseInt(d.AverageHighwayMPG));})
-  .attr("r", function(d){return parseInt(d.EngineCylinders)+2;});
+  .attr("cx", function(d) {return xscale(parseInt(d."Country Name"));})
+  .attr("cy", function(d){ return yscale(parseInt(d."Avg. Value"));})
+  .attr("r", function(d){return 2;});
 
 var yaxis = d3.select("svg").append("g")
 .attr("transform","translate("+margin+","+margin+")")
