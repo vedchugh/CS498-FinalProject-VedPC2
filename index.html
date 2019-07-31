@@ -15,8 +15,8 @@ var w = 200;
 var h = 200;
 var padding = 2;
 
-var yscale = d3.scaleLinear().domain([0,42]).range([h,0]);
-var xscale = d3.scaleBand().domain([0,1,2,3,4,5]).range([0,w]);
+var yscale = d3.scaleLinear().domain([30,95]).range([h,0]);
+var xscale = d3.scaleBand().domain(data.map(function(d) { return d."Country Name"; })).range([0,w]);
 
 var margin = 50;
 var height = 200;
@@ -31,8 +31,8 @@ g.selectAll("rect")
   .data(data)
   .enter()
   .append("rect")
-  .attr("x", function(d, i) {return xscale(i);})
-  .attr("y", function(d){ return yscale(d);})
+  .attr("x", function(d) {return xscale(d."Country Name");})
+  .attr("y", function(d){ return yscale(d."Avg. Value");})
   .attr("width", xscale.bandwidth())
   .attr("height", function(d){return h- yscale(d);});
 
