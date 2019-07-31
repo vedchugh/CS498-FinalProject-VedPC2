@@ -14,7 +14,7 @@ console.log(data);
 var w = 800;
 var h = 800;
 var padding = 2;
-console.log(data.map(function(d) { return d.CountryName;}));
+
   
 var yscale = d3.scaleLinear().domain([30,95]).range([h,0]);
 var xscale = d3.scaleBand().domain(data.map(function(d) { return d.CountryName;})).range([0,w]);
@@ -35,7 +35,7 @@ g.selectAll("rect")
   .attr("x", function(d) {return xscale(d.CountryName);})
   .attr("y", function(d){ return yscale(parseFloat(d.AvgValue));})
   .attr("width", xscale.bandwidth())
-  .attr("height", function(d){return h- yscale(parseFloast(d.AvgValue));});
+  .attr("height", function(d){return h- yscale(parseFloat(d.AvgValue));});
 
 var yaxis = d3.select("svg").append("g")
 .attr("transform","translate("+margin+","+margin+")")
