@@ -29,7 +29,7 @@ g.selectAll("circle")
   .data(data)
   .enter()
   .append("circle")
-  .attr("cx", function(d) {return xscale(parseInt(d."Country Name"));})
+  .attr("cx", function(d) {return xscale(d."Country Name");})
   .attr("cy", function(d){ return yscale(parseInt(d."Avg. Value"));})
   .attr("r", 2);
 
