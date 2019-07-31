@@ -4,23 +4,23 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
   <style> rect {fill: lightblue; stroke: black; }</style>
 <body onload='init()'>
-<svg width=300 height=300>
+<svg width=900 height=900>
 </svg>
 <script>
 async function init() {
 const data = await d3.csv('https://vedchugh.github.io/CS498-FinalProject-VedPC2/HW2_Country_Avg_age.csv');
 console.log(data);
 
-var w = 200;
-var h = 200;
+var w = 800;
+var h = 800;
 var padding = 2;
 
 var yscale = d3.scaleLinear().domain([30,95]).range([h,0]);
 var xscale = d3.scaleBand().domain(data.map(function(d) { return d.CountryName;})).range([0,w]);
 
 var margin = 50;
-var height = 200;
-var width = 200;
+var height = 800;
+var width = 800;
 
 
 var g = d3.selectAll("svg")
