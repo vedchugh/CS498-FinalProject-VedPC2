@@ -14,7 +14,8 @@ console.log(data);
 var w = 800;
 var h = 800;
 var padding = 2;
-
+console.log(data.map(function(d) { return d.CountryName;}));
+  
 var yscale = d3.scaleLinear().domain([30,95]).range([h,0]);
 var xscale = d3.scaleBand().domain(data.map(function(d) { return d.CountryName;})).range([0,w]);
 
