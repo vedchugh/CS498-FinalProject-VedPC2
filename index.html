@@ -8,7 +8,7 @@
 </svg>
 <script>
 async function init() {
-const data = await d3.csv('https://vedchugh.github.io/CS498-FinalProject-VedPC2/HW2_Country_Avg_age.csv');
+const data = await d3.tsv('https://vedchugh.github.io/CS498-FinalProject-VedPC2/HW2_Country_Avg_age.csv');
 console.log(data);
 
 var w = 800;
@@ -35,7 +35,7 @@ g.selectAll("rect")
   .attr("x", function(d) {return xscale(d.CountryName);})
   .attr("y", function(d){ return yscale(Math.round(parseFloat(d.AvgValue != null)));})
   .attr("width", xscale.bandwidth())
-  .attr("height", function(d){return h- yscale(Math.round(parseFloat(d.AvgValue != null)));});
+  .attr("height", function(d){return h - yscale(Math.round(parseFloat(d.AvgValue != null)));});
 
 var yaxis = d3.select("svg").append("g")
 .attr("transform","translate("+margin+","+margin+")")
