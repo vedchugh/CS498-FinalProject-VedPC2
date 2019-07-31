@@ -33,9 +33,9 @@ g.selectAll("rect")
   .enter()
   .append("rect")
   .attr("x", function(d) {return xscale(d.CountryName);})
-  .attr("y", function(d){ return yscale(d.AvgValue);})
+  .attr("y", function(d){ return yscale(parseFloat(d.AvgValue));})
   .attr("width", xscale.bandwidth())
-  .attr("height", function(d){return h- yscale(d.AvgValue);});
+  .attr("height", function(d){return h- yscale(parseFloast(d.AvgValue));});
 
 var yaxis = d3.select("svg").append("g")
 .attr("transform","translate("+margin+","+margin+")")
