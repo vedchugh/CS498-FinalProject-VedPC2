@@ -1,0 +1,273 @@
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+</style>
+<body>
+
+      
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin-left:250px">
+   
+  <div class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Heading</h1>
+      <p>Some text</p>
+
+      <meta charset="utf-8" />
+<style>
+.axis {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #ccc;
+  shape-rendering: crispEdges;
+}
+.axis.y line {
+  stroke-dasharray: 2,4
+}
+.label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  fill: #aaa;
+}
+path.domain {
+  stroke: none;
+}
+.bubble {
+  stroke: white;
+  fill-opacity: 0.75;
+}
+.tooltip {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
+  pointer-events: none;
+  position: absolute;
+}
+
+.legend-title {
+  font-size: 2.2em;
+  fill: #444444;
+  font-family: sans-serif;
+}
+</style> 
+<body>
+<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+var margin = { top: 30, right: 10, bottom: 20, left: 20 },
+  width = 960 - margin.left - margin.right,
+  height = 700 - margin.top - margin.bottom
+
+var svg = d3.select("body").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+var tooltip = d3.select("body").append("div")   
+  .attr("class", "tooltip")
+
+var x = d3.scaleLog()
+  .range([0, width])
+
+var y = d3.scaleLinear()
+  .range([height, 0])
+
+var color = d3.scaleOrdinal()
+  .domain(["Sub-Saharan Africa", "South Asia", "Middle East & North Africa", "America", "Europe & Central Asia", "East Asia & Pacific"])
+  .range(["#66c2a5","#fc8d62","#8da0cb","#e78ac3","#a6d854","#ffd92f"])
+
+var radius = d3.scaleSqrt()
+  .range([2, 80])
+
+var xAxis = d3.axisBottom()
+  .scale(x)
+  .ticks(5, d3.format(",d"))
+
+var yAxis = d3.axisLeft()
+  .scale(y)
+  .tickSize(-width)
+
+svg.append("text")
+  .attr("class", "x label")
+  .attr("text-anchor", "end")
+  .attr("x", width)
+  .attr("y", height - 6)
+  .text("2018 Income per capita, inflation-adjusted (dollars)");
+
+svg.append("text")
+  .attr("class", "y label")
+  .attr("text-anchor", "start")
+  .attr("y", 6)
+  .attr("dy", ".75em")
+  .text("Life expectancy (Years)");
+
+d3.csv("https://vedchugh.github.io/CS498-FinalProject-VedPC2/gapminder.csv", type, function (error, data) {
+  if (error) throw error
+
+  data.sort(function(a, b) { return b.Population - a.Population })
+
+  x.domain(d3.extent(data, function(d) { return d.Income }))
+  y.domain(d3.extent(data, function(d) { return d.Lifeexpect+15 }))
+  radius.domain(d3.extent(data, function(d) { return d.Population }))
+
+  svg.append("g")
+    .attr("class", "axis x")
+    .attr("transform", "translate(" + 0 + "," + height + ")")
+    .call(xAxis)
+
+  svg.append("g")
+    .attr("class", "axis y")
+    .call(yAxis)
+
+  svg.append("g")
+    .attr("class", "bubbles")
+    .selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("class", function(d, i) { return "bubble id-" + i})
+    .attr("cx", function(d) { 
+      return x(d.Income)
+    })
+    .attr("cy", function(d) {
+      return y(d.Lifeexpect)
+    })
+    .attr("r", function(d) {
+      return radius(d.Population)
+    })
+    .style("fill", function(d) {
+      return color(d.region)
+    })
+  
+  svg.append("circle")
+    .style("pointer-events", "none")
+    .attr("class", "hover")
+    .attr("fill", "none")
+    .attr("transform", "translate(-100,-100)")
+
+  var voronoi = d3.voronoi()
+    .x(function(d) { return x(d.Income); })
+    .y(function(d) { return y(d.Lifeexpect); })
+    .extent([[0, 0], [width, height]]);
+
+  var voronoiGroup = svg.append("g")
+    .attr("class", "voronoi")
+
+  voronoiGroup.selectAll("path")
+    .data(voronoi.polygons(data))
+    .enter()
+    .append("path")
+    .attr("d", function(d, i) { return "M" + d.join("L") + "Z"; })
+    .style("fill", "none")
+    .style("pointer-events", "all")
+    .on("mousemove", function(d, i) {
+      d3.selectAll(".bubble.id-" + i).attr("stroke", "none")
+
+      d3.selectAll(".hover")
+        .attr("stroke", "#111")
+        .attr("stroke-width", 1.5)
+        .attr("cx", x(d.data.Income))
+        .attr("cy", y(d.data.Lifeexpect))
+        .attr("r", radius(d.data.Population))
+        .attr("transform", "translate(0,0)")
+      
+      
+       /*.append("line")
+        .style("stroke", "black") // colour the line
+        .attr("x1", x(d.data.Income))     // x position of the first end of the line
+        .attr("y1", y(d.data.Lifeexpect))      // y position of the first end of the line
+        .attr("x2", 0)     // x position of the second end of the line
+        .attr("y2", y(d.data.Lifeexpect))*/
+      
+
+      tooltip.html(d.data.Country+": Income $"+d.data.Income +": Avg. Life Expectancy "+d.data.Lifeexpect+" Years")
+        .style("opacity", 1)
+        .style("left", x(d.data.Income) + 20 + "px")
+        .style("top", (y(d.data.Lifeexpect) - radius(d.data.Population)) + 20 + "px")
+       
+    })
+    .on("mouseout",  function(d) {
+      d3.select(".hover").attr("stroke", "none")
+      
+      tooltip.style("opacity", 0)
+    })
+})
+
+function type (d) {
+  d.Income = +d.Income
+  d.Lifeexpect = +d.Lifeexpect
+  d.Population = +d.Population
+
+  return d
+}
+</script>
+</body>  
+  
+
+</div>
+
+<!-- Pagination -->
+<div class="w3-center w3-padding-32">
+  <div class="w3-bar">
+    <a class="w3-button w3-black" href="index.html">1</a>
+    <a class="w3-button w3-hover-black" href="pages/geopop.html">2</a>
+    <a class="w3-button w3-hover-black" href="pages/lifeincome.html">3</a>
+    <a class="w3-button w3-hover-black" href="pages/gapminder.html">4</a>
+  </div>
+</div>
+
+
+
+<!-- END MAIN -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+if (mySidebar.style.display === 'block') {
+  mySidebar.style.display = 'none';
+  overlayBg.style.display = "none";
+} else {
+  mySidebar.style.display = 'block';
+  overlayBg.style.display = "block";
+}
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+mySidebar.style.display = "none";
+overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>
