@@ -7,7 +7,7 @@ So As part of the Narrative Visualization I have chosen to evaluate and work on 
 
 In the video Prof. Hans Rosling shows that people live longer in countries with a high GDP per capita. Low income countries have short life expectancy, and further no low-income countries have long life expectancy. 
 
-!Gapminder(gapminder.png)
+![Gapminder](gapminder.png)
 
 In effort to recreate the above graph in D3, I used minute set of data for Year 2018. For same I had to curate the data outside D3, wherein I downloaded World population, World Life Expectancy, World Avg Income and Finally the Region - for Country/region Information. And joined them to form a single Dataset.
 
@@ -20,7 +20,7 @@ Below D3 Charting used Filtering as Parameters to Trigger the Plots of datasets 
 
 For example, in below Snapshot based on user selection from drop downs, the plot is drawn between Income and Country Id
 
-!Landing Page(landing.png)
+![Landing Page](landing.png)
 
 The scenes follow a template for visual consistency and follow an order to best convey the message.
 
@@ -28,17 +28,17 @@ Thus, for approach towards Prof Hans Rosling - Gapminder’s view of Life Expect
 
 The second scene follows to give more of a geographical perspective with sort of Interactive Slideshow, showing the geographical locations along with Population of countries.
 
-!Geopop (geopop.png) 
+![Geopop](geopop.png) 
 
 This gives user the opportunity to explore and thus further zoom and hover over the countries for Tooltips and has annotations.
 
 Moving further to next scene, were in a scatter plot as a prelim to Prof. Hans Rosling’s Life Expectancy view is displayed. This is more of a informative slide.
 
-!Page 3 (page3.png) 
+![Page 3](page3.png) 
  
 And finally, the Year 2018 data is used to generate the Life Expectancy Over Income Data.
 
-!Gapminder2018 (gapminder2018.png)  
+![Gapminder2018](gapminder2018.png)  
 
 This Chart is one Year - 2018 version of Gapminder - Hans Rosling's depiction of Life Expectancy. It shows the stark contrast that how a better income in more developed nations impacts Life Expectancy.
 
