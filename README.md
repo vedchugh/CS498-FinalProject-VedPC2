@@ -1,4 +1,6 @@
 CS-498 - Narrative Visualization – By Ved Chugh (vedpc2)
+
+
 World Nations Health/Wealth and Population.
 
 These days the availability of Data and the swiftness in which it is getting generated helps us analyze and further investigate and conclude on various issues. 
